@@ -1,11 +1,11 @@
 export const chartWeight = {
   type: 'line',
   data: {
-    labels: ['27', '28', '29', '30'],
+    labels: ['29', '30', '31'],
     datasets: [
       {
         label: 'Change in Weight',
-        data: [97, 96, 96, 95],
+        data: [96, 96, 95],
         borderColor: 'red',
         borderWidth: 1,
       },
@@ -17,18 +17,22 @@ export const chartWeight = {
       text: 'Some physical change',
     },
     scales: {
-      yAxes: [{
-        scaleLabel: {
-          display: true,
-          labelString: 'kg',
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'kg',
+          },
         },
-      }],
-      xAxes: [{
-        scaleLabel: {
-          display: true,
-          labelString: 'week',
+      ],
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'week',
+          },
         },
-      }],
+      ],
     },
   },
 };
@@ -58,18 +62,22 @@ export const chartCircumference = {
       text: 'Some physical change',
     },
     scales: {
-      yAxes: [{
-        scaleLabel: {
-          display: true,
-          labelString: 'cm',
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'cm',
+          },
         },
-      }],
-      xAxes: [{
-        scaleLabel: {
-          display: true,
-          labelString: 'week',
+      ],
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'week',
+          },
         },
-      }],
+      ],
     },
   },
 };
