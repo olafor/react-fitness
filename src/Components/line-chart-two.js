@@ -49,7 +49,7 @@ const LineChartTwo = (props) => {
       });
       setChartInstance(newChartInstance);
     }
-  }, [props.data]);
+  }, [props.data1, props.data2]);
 
   return (
     <div>
