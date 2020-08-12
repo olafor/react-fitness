@@ -21,12 +21,6 @@ const Dashboard = () => {
   const [waistData, setWaistData] = useState([]);
   const [chestData, setChestData] = useState([]);
 
-  const [weightMax, setWeightMax] = useState(100.0);
-  const [weightMin, setWeightMin] = useState(80.0);
-
-  const [circumferenceMax, setCircumferenceMax] = useState(115);
-  const [circumferenceMin, setCircumferenceMin] = useState(85);
-
   const [weightField, setWeightField] = useState(97.0);
   const [waistField, setWaistField] = useState(100);
   const [chestField, setChestField] = useState(110);
@@ -47,15 +41,15 @@ const Dashboard = () => {
     event.preventDefault();
 
     setWeightData((unchangedData) => [...unchangedData, {
-      time: getShortDate(), value: weightField,
+      time: getShortDate(), value: parseFloat(weightField),
     }]);
 
     setWaistData((unchangedData) => [...unchangedData, {
-      time: getShortDate(), value: waistField,
+      time: getShortDate(), value: parseFloat(waistField),
     }]);
 
     setChestData((unchangedData) => [...unchangedData, {
-      time: getShortDate(), value: chestField,
+      time: getShortDate(), value: parseFloat(chestField),
     }]);
   };
 
@@ -66,21 +60,19 @@ const Dashboard = () => {
       <Grid
         container
         justify="center"
-        spacing={10}
+        spacing={4}
         style={{
-          padding: '20px',
+          padding: '10px',
         }}
       >
-        <Grid item md={4}>
+        <Grid item md={6}>
           <LineChartOne
             data={weightData}
             title="weight"
             color="red"
-            max={weightMax}
-            min={weightMin}
           />
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <LineChartTwo
             data1={waistData}
             title1="Waist"
@@ -88,14 +80,12 @@ const Dashboard = () => {
             data2={chestData}
             title2="Chest"
             color2="blue"
-            max={circumferenceMax}
-            min={circumferenceMin}
           />
         </Grid>
       </Grid>
       <div>
         <form className={classes.root}>
-          <div>
+          <div style={{ paddingTop: '20px' }}>
             <TextField
               style={{
                 marginTop: 0,
@@ -103,10 +93,15 @@ const Dashboard = () => {
               }}
               id="weight"
               type="number"
+              InputProps={{
+                inputProps: {
+                  max: 200, min: 40,
+                },
+              }}
               variant="standard"
               size="small"
               color="primary"
-              label="Enter Weight"
+              label="Enter Weight [kg]"
               value={weightField}
               onChange={handleWeightChange}
             />
@@ -116,11 +111,16 @@ const Dashboard = () => {
                 backgroundColor: 'white',
               }}
               id="waist"
+              InputProps={{
+                inputProps: {
+                  max: 200, min: 40,
+                },
+              }}
               type="number"
               variant="standard"
               size="small"
               color="primary"
-              label="Enter Waist Measurement"
+              label="Enter Waist [cm]"
               value={waistField}
               onChange={handleWaistChange}
             />
@@ -131,10 +131,15 @@ const Dashboard = () => {
               }}
               id="chest"
               type="number"
+              InputProps={{
+                inputProps: {
+                  max: 200, min: 40,
+                },
+              }}
               variant="standard"
               size="small"
               color="primary"
-              label="Enter Chest Measurement"
+              label="Enter Chest [cm]"
               value={chestField}
               onChange={handleChestChange}
             />
@@ -146,7 +151,7 @@ const Dashboard = () => {
           type="submit"
           onClick={handleSubmit}
         >
-          Add Metrics
+          Update Metrics
         </Button>
       </div>
     </div>

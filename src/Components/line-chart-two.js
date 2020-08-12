@@ -5,6 +5,18 @@ const LineChartTwo = (props) => {
   const chartContainer = useRef(null);
   const [chartInstance, setChartInstance] = useState(null);
 
+  const [max, setMax] = useState(100);
+  const [min, setMin] = useState(0);
+
+  useEffect(() => {
+    if (props.data1.length > 0) {
+      const temp = props.data1.concat(props.data2);
+      const metrics = temp.map((data) => data.value);
+      setMax(Math.max(...metrics) + 1);
+      setMin(Math.min(...metrics) - 1);
+    }
+  }, [props.data1]);
+
   useEffect(() => {
     if (chartContainer && chartContainer.current) {
       const newChartInstance = new Chartjs(chartContainer.current, {
@@ -13,9 +25,18 @@ const LineChartTwo = (props) => {
           scales: {
             yAxes: [
               {
-                ticks: {
-                  max: props.max,
-                  min: props.min,
+                ticks: { max, min },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'cm',
+                },
+              },
+            ],
+            xAxes: [
+              {
+                scaleLabel: {
+                  display: true,
+                  labelString: 'time',
                 },
               },
             ],
@@ -49,7 +70,7 @@ const LineChartTwo = (props) => {
       });
       setChartInstance(newChartInstance);
     }
-  }, [props.data1, props.data2]);
+  }, [props.data1, props.data2, max, min]);
 
   return (
     <div>

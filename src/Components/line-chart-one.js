@@ -4,6 +4,16 @@ import Chartjs from 'chart.js';
 const LineChartOne = (props) => {
   const chartContainer = useRef(null);
   const [chartInstance, setChartInstance] = useState(null);
+  const [max, setMax] = useState(100);
+  const [min, setMin] = useState(0);
+
+  useEffect(() => {
+    if (props.data.length > 0) {
+      const weightProgression = props.data.map((data) => data.value);
+      setMax(Math.max(...weightProgression) + 1);
+      setMin(Math.min(...weightProgression) - 1);
+    }
+  }, [props.data]);
 
   useEffect(() => {
     if (chartContainer && chartContainer.current) {
@@ -13,9 +23,18 @@ const LineChartOne = (props) => {
           scales: {
             yAxes: [
               {
-                ticks: {
-                  max: props.max,
-                  min: props.min,
+                ticks: { max, min },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'kg',
+                },
+              },
+            ],
+            xAxes: [
+              {
+                scaleLabel: {
+                  display: true,
+                  labelString: 'time',
                 },
               },
             ],
@@ -39,7 +58,7 @@ const LineChartOne = (props) => {
       });
       setChartInstance(newChartInstance);
     }
-  }, [props.data]);
+  }, [props.data, max, min]);
 
   return (
     <div>
