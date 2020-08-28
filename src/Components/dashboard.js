@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import LineChartOne from './line-chart-one';
 import LineChartTwo from './line-chart-two';
-import getShortDate from './date-handling';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const formatDate = (date) => date.toISOString().split('T')[0];
+
 const Dashboard = () => {
   const [weightData, setWeightData] = useState([]);
   const [waistData, setWaistData] = useState([]);
@@ -24,6 +25,8 @@ const Dashboard = () => {
   const [weightField, setWeightField] = useState(97.0);
   const [waistField, setWaistField] = useState(100);
   const [chestField, setChestField] = useState(110);
+
+  const [date, setDate] = useState(formatDate(new Date()));
 
   const handleWeightChange = (event) => {
     setWeightField(event.target.value);
@@ -37,19 +40,23 @@ const Dashboard = () => {
     setChestField(event.target.value);
   };
 
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     setWeightData((unchangedData) => [...unchangedData, {
-      time: getShortDate(), value: parseFloat(weightField),
+      time: date, value: parseFloat(weightField),
     }]);
 
     setWaistData((unchangedData) => [...unchangedData, {
-      time: getShortDate(), value: parseFloat(waistField),
+      time: date, value: parseFloat(waistField),
     }]);
 
     setChestData((unchangedData) => [...unchangedData, {
-      time: getShortDate(), value: parseFloat(chestField),
+      time: date, value: parseFloat(chestField),
     }]);
   };
 
@@ -144,6 +151,16 @@ const Dashboard = () => {
               onChange={handleChestChange}
             />
           </div>
+          <TextField
+            id="date"
+            label="Enter Date"
+            type="date"
+            defaultValue={date}
+            onChange={handleDateChange}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
         </form>
         <Button
           variant="contained"
