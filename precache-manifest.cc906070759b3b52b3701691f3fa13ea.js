@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "08cb450f3362ca49989edc0ee51e3289",
+    "revision": "eccc5c7c9c8dab22fcc62d2accd124f2",
     "url": "/react-fitness/index.html"
   },
   {
-    "revision": "8c955342fdd7c1ae3bd7",
+    "revision": "521c620da299fb99d911",
     "url": "/react-fitness/static/css/main.5facb584.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-fitness/static/js/2.b0322c10.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8c955342fdd7c1ae3bd7",
-    "url": "/react-fitness/static/js/main.82825c1a.chunk.js"
+    "revision": "521c620da299fb99d911",
+    "url": "/react-fitness/static/js/main.06967d01.chunk.js"
   },
   {
     "revision": "e178e27e5ac9e1f0889e",
